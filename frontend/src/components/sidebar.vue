@@ -29,6 +29,15 @@
               placeholder="후기를 입력해주세요."
           />
         </div>
+        <div class="location-info-area">
+          <FontAwesomeIcon icon="location-dot" />
+          <BInput placeholder="위치 정보 직접 입력하기"/>
+        </div>
+        <div class="bottom-btn-area">
+          <BButton class="save-btn">
+            저장
+          </BButton>
+        </div>
       </div>
     </VueResizable>
     <BButton
@@ -37,6 +46,13 @@
         @click="showSideBar"
     >
       {{ isVisibleSideBar ? '닫힘' : '열림' }}
+    </BButton>
+    <BButton
+        class="side-bar-active-btn"
+        size="sm"
+        @click="showSideBar"
+    >
+      <FontAwesomeIcon :icon="isVisibleSideBar ? 'angle-left' : 'angle-right'" />
     </BButton>
   </div>
 </template>
@@ -106,7 +122,9 @@ export default {
       }
 
       > .location-info-area {
-        padding: 10px;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
 
         input, input::placeholder, input:focus {
           font-size: 1rem;
@@ -179,5 +197,14 @@ export default {
     width: 40px;
     height: 40px;
   }
+  > .bottom-btn-area {
+    text-align: right;
+    padding-right: 10px;
+
+    > .save-btn {
+      color: #fff;
+      font-weight: bold;
+      background-color: #ee9e06;
+    }
 }
 </style>

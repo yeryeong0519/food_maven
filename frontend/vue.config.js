@@ -1,9 +1,10 @@
-const bootstrapSassAbstractsImports = require('vue-cli-plugin-bootstrap-vue/sassAbstractsImports.js')
 const bootstrapSassAbstractsImports = require('vue-cli-plugin-bootstrap-vue/sassAbstractsImports.js');
-const { defineConfig } = require('@vue/cli-service');
 
-module.exports = defineConfig({
-    transpileDependencies: true,
+module.exports = {
+    transpileDependencies: [
+        'vue-geolocation-api', // 해당 모듈이 포함되어야 하는 경우 추가
+        'other-dependency',   // 다른 모듈이 포함되어야 하는 경우 추가
+    ],
     outputDir: "../src/main/resources/static",
     devServer: {
         proxy: {
@@ -18,19 +19,16 @@ module.exports = defineConfig({
             sass: {
                 additionalData: `@import "bootstrap/scss/functions"; @import "@/assets/scss/vendors/bootstrap-vue/_custom"; @import "bootstrap/scss/variables"; @import "bootstrap/scss/mixins"; @import "bootstrap-vue/src/_variables";`,
             },
-            scss: {
-                additionalData: `@import "bootstrap/scss/functions"; @import "@/assets/scss/vendors/bootstrap-vue/_custom"; @import "bootstrap/scss/variables"; @import "bootstrap/scss/mixins"; @import "bootstrap-vue/src/_variables";`,
-            },
         },
     },
-});
-	css: {
-		loaderOptions: {
-			sass: {
-				additionalData: bootstrapSassAbstractsImports.join('\n')
-			},
-			scss: {
-				additionalData: [...bootstrapSassAbstractsImports, ''].join(';\n')
-			}
-		}
-	}
+    pluginOptions: {
+        // SCSS 프리프로세서 설정을 추가합니다.
+        'style-resources-loader': {
+            preProcessor: 'scss',
+            patterns: [
+                // SCSS 파일 경로를 추가합니다.
+                // 예: path.resolve(__dirname, 'path/to/your/file.scss')
+            ],
+        },
+    },
+};
