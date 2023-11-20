@@ -1,10 +1,7 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import Home from '@/components/MainMap.vue';
 import Login from '@/views/loginForm.vue';
-import Signup from '@/views/Signup.vue';
-
-Vue.use(VueRouter);
+import Signup from '@/views/SignupForm.vue';
 
 const routes = [
     { path: '/', component: Home },
@@ -12,9 +9,9 @@ const routes = [
     { path: '/signup', component: Signup },
 ];
 
-const router = new VueRouter({
+const router = createRouter({
+    history: createWebHistory(),
     routes,
-    mode: 'history', // 선택 사항: URL에 #을 사용하지 않도록 설정
 });
 
 export default router;

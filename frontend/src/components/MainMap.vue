@@ -1,33 +1,17 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="components/MainMap.vue">EcoDineNavigator</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="components/login.vue">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Sign Up</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <!-- 네비게이션 바 내용 생략 -->
     </nav>
-
 
     <div class="main-map" ref="map"></div>
 
     <!-- 내 위치 정보 표시 컴포넌트 추가 -->
     <LocationInfo @updateMapCenter="updateMapCenter" />
     <PinOverlay :latitude="currentLocation.latitude" :longitude="currentLocation.longitude" />
+
+    <!-- 다른 컴포넌트에서 FontAwesomeIcon을 사용하는 예시 -->
+    <SomeOtherComponent />
   </div>
 </template>
 
@@ -40,12 +24,13 @@ import { fromLonLat } from 'ol/proj.js';
 
 import LocationInfo from '@/components/LocationMap.vue';
 import currentLocation from "@/components/CurrentLocation.vue";
+// SomeOtherComponent를 import할 필요가 있으면 추가
 
 export default {
   name: 'MainMap',
   computed: {
     currentLocation() {
-      return currentLocation
+      return currentLocation;
     }
   },
   data() {

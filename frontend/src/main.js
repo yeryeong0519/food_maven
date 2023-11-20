@@ -1,16 +1,13 @@
-import '@babel/polyfill'
-import 'mutationobserver-shim'
-import Vue from 'vue'
-import './plugins/bootstrap-vue'
-import App from './App.vue'
-import '@/common/Icons.js';
+import '@babel/polyfill';
+import 'mutationobserver-shim';
+import { createApp } from 'vue';
+import App from './App.vue';
 import router from './router';
-import { createApp } from 'vue'
-import Geolocation from 'vue-geolocation-api'
+import Geolocation from 'vue-geolocation-api';
+import '@/common/Icons.js';
 
-Vue.config.productionTip = false
+const app = createApp(App);
 
-createApp(App).use(router).mount('#app');
-app.use(Geolocation)
-app.use(router)
-app.mount('#app')
+app.use(Geolocation);
+app.use(router);
+app.mount('#app');
